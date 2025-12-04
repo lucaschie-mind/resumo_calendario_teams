@@ -8,6 +8,14 @@ import requests
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 from openai import OpenAI
+from fastapi import FastAPI
+
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"status": "ok", "message": "API de resumo do calendário do Teams está no ar."}
 
 # ==========================
 # Carregar variáveis de ambiente
