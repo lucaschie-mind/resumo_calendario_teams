@@ -418,7 +418,7 @@ def pagina_login():
             st.session_state.area = area
             st.session_state.cargo = cargo
             st.success(f"Bem-vindo, {nome}!")
-            st.experimental_rerun()
+            st.rerun()
         except Exception as e:
             st.error(f"Erro no login: {e}")
 
@@ -437,7 +437,7 @@ def pagina_principal():
         for k in ["logged_in", "email", "nome", "area", "cargo"]:
             if k in st.session_state:
                 del st.session_state[k]
-        st.experimental_rerun()
+        st.rerun()
 
     st.markdown("---")
     st.subheader("Configurações do resumo")
