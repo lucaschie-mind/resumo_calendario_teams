@@ -365,7 +365,7 @@ def gerar_resumo_com_base_em_reunioes_comb(
     )
 
     user_prompt = (
-        f"Faça o resumo de trabalho de um funcionário {nome} tentando dizer no que o funcionário trabalhou "
+        f"Faça o resumo de trabalho de um funcionário {nome} tentando dizer no que o funcionário trabalhou em primeira pessoa, ou seja, como se a pessoa estivesse escrevendo. "
         f"e quais atividades a pessoa se dedicou mais. "
         f"Leve em consideração o cargo da pessoa: {cargo} na área {area}. "
         f"O calendário dessa semana da pessoa foi: {texto_reunioes}. "
@@ -502,14 +502,23 @@ def pagina_principal():
                     area,
                 )
 
-            st.success("Resumo gerado com sucesso! ✅")
-
-            st.markdown("### Texto bruto retornado pelo modelo:")
-            st.code(raw_text, language="json")
-
-            if respostas_json is not None:
-                st.markdown("### JSON interpretado:")
-                st.json(respostas_json)
+            st.markdown(
+                f"""
+                <div style="
+                    background-color:#f8f9fa;
+                    border-left: 5px solid #4a90e2;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    color:#333;
+                    white-space: pre-wrap;
+                ">
+                    {raw_text}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
         except Exception as e:
             st.error(f"Erro ao gerar resumo: {e}")
